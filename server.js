@@ -27,6 +27,8 @@ class Company {
         this.state = faker.address.state();
         this.zipCode = faker.address.zipCode()
         this.country = faker.address.county()
+        this.country = faker.address.county()
+
     }
 }
 console.log(new Company());
