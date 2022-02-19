@@ -4,23 +4,34 @@ const port = 3001;
 
 const { faker } = require('@faker-js/faker');
 
-const user = [
-    faker.datatype.number(),
-    faker.name.firstName(),
-    faker.name.lastName(),
-    faker.phone.phoneNumber(),
-    faker.internet.email(),
-    faker.internet.password(),
-];
+class User {
+    constructor() {
+        this.datatype = faker.datatype.number();
+        this.name = faker.name.firstName();
+        this.name = faker.name.lastName();
+        this.phone = faker.phone.phoneNumber();
+        this.email = faker.internet.email();
+        this.password = faker.internet.password();
+    }
+}
+console.log(new User());
+const user = new User();
 
-const companies = [
-    faker.datatype.number(),
-    faker.name.firstName(),
-    faker.name.lastName(),
-    faker.phone.phoneNumber(),
-    faker.internet.email(),
-    faker.internet.password(),
-];
+class Company {
+    constructor() {
+        this.number = faker.datatype.number();
+        this.name = faker.name.firstName();
+        this.address = faker.address.streetAddress();
+        this.streetName = faker.address.streetName();
+        this.cityName = faker.address.cityName();
+        this.state = faker.address.state();
+        this.zipCode = faker.address.zipCode()
+        this.country = faker.address.county()
+    }
+}
+console.log(new Company());
+const company = new Company();
+
 
 app.use( express.json() );
 app.use( express.urlencoded({ extended: true }) );
@@ -30,11 +41,11 @@ app.get("/api/users", (req, res) => {
 });
 
 app.get("/api/users/company", (req, res) => {
-    res.json({user, companies});
+    res.json({user, company});
 });
 
 app.get("/api/companies", (req, res) => {
-    res.json({companies});
+    res.json({company});
 });
 
 app.get("/api/users/new", (req, res) => {
